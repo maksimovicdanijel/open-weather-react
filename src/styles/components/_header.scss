@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    height: 60px;
+    background: $primaryColor;
+    padding: 10px 20px;
+    color: #fff;
+
+    display: flex;
+    justify-content: space-between;
+
+    &--title {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 400;
+
+        margin: 0;
+    }
+}
