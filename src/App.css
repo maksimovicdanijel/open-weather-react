@@ -399,7 +399,7 @@ body {
 
 .header {
   height: 60px;
-  background: #00bcd4;
+  background: #00d1b2;
   padding: 10px 20px;
   color: #fff;
   display: flex;
@@ -409,3 +409,6 @@ body {
     font-size: 1.5rem;
     font-weight: 400;
     margin: 0; }
+
+.fullheight-container {
+  margin-top: -60px; }

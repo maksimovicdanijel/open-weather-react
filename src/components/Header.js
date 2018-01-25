@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import EnterLocation from './EnterLocation';
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -33,12 +35,7 @@ class Header extends Component {
       <header className="header">
         <h1 className="header--title">Open Weather</h1>
         <div className="header--search-bar">
-          <form action="" onSubmit={this.onSubmit}>
-            <input type="text" 
-                   onChange={this.onLocationChange} 
-                   value={this.state.location}
-                   placeholder="Enter a location" />
-          </form>
+          <EnterLocation />
         </div>
       </header>
     );
