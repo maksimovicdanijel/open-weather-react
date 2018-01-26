@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 
 import EnterLocation from './EnterLocation';
@@ -26,9 +25,5 @@ class Header extends Component {
     );
   }
 }
-
-Header.propTypes = {
-  onSubmit: PropTypes.func
-};
 
 export default withRouter(Header);
