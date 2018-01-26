@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 
 import EnterLocation from './EnterLocation';
 
@@ -7,33 +8,17 @@ class Header extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      location: ''
-    };
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onParentSubmit = this.props.onSubmit ? this.props.onSubmit : () => {};
-    this.onLocationChange = this.onLocationChange.bind(this);
+    this.handleLogoClick = this.handleLogoClick.bind(this);
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    this.onParentSubmit(this.state.location);
-
-    this.setState({location: ''});
-  }
-
-  onLocationChange(e) {
-    this.setState({
-      location: e.target.value
-    });
+  handleLogoClick() {
+    this.props.history.push('/');
   }
 
   render() {
     return (
       <header className="header">
-        <h1 className="header--title">Open Weather</h1>
+        <h1 className="header--title" style={{cursor: 'pointer'}} onClick={this.handleLogoClick}>Open Weather</h1>
         <div className="header--search-bar">
           <EnterLocation />
         </div>
@@ -46,4 +31,4 @@ Header.propTypes = {
   onSubmit: PropTypes.func
 };
 
-export default Header;
+export default withRouter(Header);
