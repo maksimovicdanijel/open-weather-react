@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {Field, Control, Input, Button, Level} from 'reactbulma';
+import {Redirect} from 'react-router-dom';
 
 class EnterLocation extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      location: ''
+      location: '',
+      submitedLocation: '',
+      submited: false
     }
 
     this.onChange = this.onChange.bind(this);
@@ -22,10 +25,23 @@ class EnterLocation extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    this.setState({location: ''});
+    const location = this.state.location;
+
+    this.setState({
+      location: '', 
+      submited: true,
+      submitedLocation: location
+    });
   }
 
   render() {
+    if (this.state.submited) {
+      return <Redirect to={{
+        pathname: '/forecast',
+        search: '?location=' + this.state.submitedLocation
+      }} />
+    }
+
     return (
       <div className="enter-location">
         <Level>
