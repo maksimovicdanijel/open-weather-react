@@ -11,6 +11,7 @@ class Forecast extends Component {
 
     this.state = {
       location: '',
+      forecast: null,
       loaded: false
     };
   }
@@ -18,12 +19,18 @@ class Forecast extends Component {
   componentDidMount() {
     const query = querystring.parse(this.props.location.search.substr(1));
 
-    WeatherService.fetchLocationyWeather(query.location);
+    WeatherService.fetchLocationyWeather(query.location)
+      .then((data) => {
+        this.setState({
+          loaded: true,
+          forecast: data
+        });
+      });
   }
 
   renderForecast() {
     return (
-      <div>{this.state.location}</div>
+      <div><pre>{this.state.forecast.city.country}</pre></div>
     );
   }
 

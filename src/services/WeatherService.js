@@ -8,10 +8,10 @@ export default {
     return 'APPID=' + this.apiKey;
   },
   fetchLocationyWeather(location) {
-    return axios.get(this.apiEndpoint + '/forecast?q=' + location + '&' + this.authParams())
+    return axios.get(this.apiEndpoint + '/forecast?q=' + location + '&cnt=5&' + this.authParams())
     
       .then((response) => {
-        console.log(response.data);
+        return response.data;
       });
   }
 }
