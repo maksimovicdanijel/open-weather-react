@@ -394,6 +394,9 @@ body {
   font-size: 16px;
   line-height: 1.65; }
 
+.page-container {
+  margin-top: 80px; }
+
 * {
   box-sizing: border-box; }
 
@@ -412,3 +415,10 @@ body {
 
 .fullheight-container {
   margin-top: -60px; }
+
+.forecast-grid-item--with-bottom-margin {
+  margin-bottom: 30px; }
+
+.forecast-grid-item__icon {
+  height: 100px;
+  margin-bottom: 20px; }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Field, Control, Input, Button, Level} from 'reactbulma';
-import {Redirect} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class EnterLocation extends Component {
   constructor(props) {
@@ -24,24 +24,11 @@ class EnterLocation extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
-    const location = this.state.location;
-
-    this.setState({
-      location: '', 
-      submited: true,
-      submitedLocation: location
-    });
+    
+    this.props.history.push('/forecast?location=' + this.state.location);
   }
 
   render() {
-    if (this.state.submited) {
-      return <Redirect to={{
-        pathname: '/forecast',
-        search: '?location=' + this.state.submitedLocation
-      }} />
-    }
-
     return (
       <div className="enter-location">
         <Level>
@@ -65,4 +52,4 @@ class EnterLocation extends Component {
   }
 }
 
-export default EnterLocation;
+export default withRouter(EnterLocation);

@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import querystring from 'querystring';
+import {Container} from 'reactbulma';
 
-import '../services/WeatherService';
 import Loading from '../components/Loading';
 import WeatherService from '../services/WeatherService';
+import withForecast from '../components/withForecast';
+import ForecastGrid from '../components/ForecastGrid';
 
 class Forecast extends Component {
   constructor(props) {
@@ -17,9 +19,21 @@ class Forecast extends Component {
   }
 
   componentDidMount() {
-    const query = querystring.parse(this.props.location.search.substr(1));
+    this.fetchForecast(this.parseLocation(this.props.location));
+  }
 
-    WeatherService.fetchLocationyWeather(query.location)
+  componentWillReceiveProps(nextProps) {
+    this.fetchForecast(this.parseLocation(nextProps.location));
+  }
+
+  parseLocation(routerLocation) {
+    const query = querystring.parse(routerLocation.search.substr(1));
+
+    return query.location;
+  }
+
+  fetchForecast(location) {
+    WeatherService.fetchLocationyWeather(location)
       .then((data) => {
         this.setState({
           loaded: true,
@@ -29,14 +43,20 @@ class Forecast extends Component {
   }
 
   renderForecast() {
+    const WithForecastGrid = withForecast(this.state.forecast, ForecastGrid);
+
     return (
-      <div><pre>{this.state.forecast.city.country}</pre></div>
+      <div>
+        <Container>
+          <WithForecastGrid />
+        </Container>
+      </div>
     );
   }
 
   render() {
     return (
-      <div>
+      <div className="page-container">
         {!this.state.loaded ? <Loading /> : this.renderForecast()}
       </div>
     );

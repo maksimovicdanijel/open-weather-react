@@ -1,0 +1,10 @@
+.forecast-grid-item {
+    &--with-bottom-margin {
+        margin-bottom: 30px;
+    }
+
+    &__icon {
+        height: 100px;
+        margin-bottom: 20px
+    }
+}

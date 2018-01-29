@@ -5,10 +5,9 @@ const withForecast = (data, Component) => {
     constructor(props) {
       super(props);
 
-      console.log(data);
-
       this.data = {
-        
+        city: data.city.name,
+        forecast: data.list
       };
     }
 
