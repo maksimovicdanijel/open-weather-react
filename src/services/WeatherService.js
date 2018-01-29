@@ -8,7 +8,7 @@ export default {
     return 'APPID=' + this.apiKey;
   },
   fetchLocationyWeather(location) {
-    return axios.get(this.apiEndpoint + '/forecast/daily?q=' + location + '&cnt=5&' + this.authParams())
+    return axios.get(this.apiEndpoint + '/forecast/daily?q=' + location + '&units=metric&cnt=5&' + this.authParams())
     
       .then((response) => {
         return response.data;

@@ -11,12 +11,9 @@ import Header from './components/Header';
 
 import Home from './pages/Home';
 import Forecast from './pages/Forecast';
+import ForecastDetails from './pages/ForecastDetails';
 
 class App extends Component {
-  onLocationChange(location) {
-    console.log(this.props);
-  }
-
   render() {
     return (
       <Router>
@@ -26,6 +23,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/forecast" component={Forecast} />
+            <Route path="/forecast/details" component={ForecastDetails} />
             <Route render={() => {return <p>Not found!</p>}} />
           </Switch>
         </div>
