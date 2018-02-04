@@ -1,0 +1,15 @@
+{
+    "selectedLocation": "Belgrade, Serbia",
+    "isFetching": false,
+    "locationForecast": {
+        "city": "Belgrade, Serbia",
+        "forecast": [
+            {
+                "data": "data"
+            }
+        ]
+    },
+    "dayForecast": {
+        "data": "data"
+    }
+}
