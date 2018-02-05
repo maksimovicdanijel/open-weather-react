@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Field, Control, Input, Button, Level} from 'reactbulma';
-import {withRouter} from 'react-router-dom';
 
 class EnterLocation extends Component {
   constructor(props) {
     super(props);
+
+    console.log(this.props);
 
     this.state = {
       location: '',
@@ -25,7 +26,7 @@ class EnterLocation extends Component {
   onSubmit(e) {
     e.preventDefault();
     
-    this.props.history.push('/forecast?location=' + this.state.location);
+    this.props.onSubmit(this.state.location);
   }
 
   render() {
@@ -52,4 +53,4 @@ class EnterLocation extends Component {
   }
 }
 
-export default withRouter(EnterLocation);
+export default EnterLocation;

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 
-import EnterLocation from './EnterLocation';
+import EnterLocationContainer from '../containers/EnterLocationContainer';
 
 class Header extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Header extends Component {
       <header className="header">
         <h1 className="header--title" style={{cursor: 'pointer'}} onClick={this.handleLogoClick}>Open Weather</h1>
         <div className="header--search-bar">
-          <EnterLocation />
+          <EnterLocationContainer />
         </div>
       </header>
     );

@@ -1,6 +1,8 @@
 {
     "selectedLocation": "Belgrade, Serbia",
     "isFetching": false,
+    "hasError": false,
+    "error": "",
     "locationForecast": {
         "city": "Belgrade, Serbia",
         "forecast": [
