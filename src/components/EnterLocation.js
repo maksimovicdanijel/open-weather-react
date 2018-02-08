@@ -27,6 +27,9 @@ class EnterLocation extends Component {
     e.preventDefault();
     
     this.props.onSubmit(this.state.location);
+    this.setState({
+      location: ''
+    });
   }
 
   render() {

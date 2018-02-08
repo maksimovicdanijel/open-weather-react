@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import createHistory from 'history/createBrowserHistory';
+import {ConnectedRouter} from 'react-router-redux';
 
 import {
-  BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  BrowserRouter
 } from 'react-router-dom';
 
 import './App.css';
@@ -14,10 +16,12 @@ import Home from './pages/Home';
 import Forecast from './pages/Forecast';
 import ForecastDetails from './pages/ForecastDetails';
 
+const history = createHistory();
+
 class App extends Component {
   render() {
     return (
-      <Router>
+      <ConnectedRouter history={history}>
         <div className="app-container">
           <Header onSubmit={this.onLocationChange} />
 
@@ -28,7 +32,7 @@ class App extends Component {
             <Route render={() => {return <p>Not found!</p>}} />
           </Switch>
         </div>
-      </Router>
+      </ConnectedRouter>
     );
   }
 }
