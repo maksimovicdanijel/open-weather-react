@@ -13,7 +13,7 @@ export function selectLocation(location) {
     });
 
     dispatch(startFetchingForecast());
-    dispatch(push('/asdfg'));
+    dispatch(push('/forecast'));
   };
 };
 
