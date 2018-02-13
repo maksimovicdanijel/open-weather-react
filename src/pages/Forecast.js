@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import querystring from 'querystring';
 import {Container} from 'reactbulma';
 
-import Loading from '../components/Loading';
 import WeatherService from '../services/WeatherService';
 import withForecast from '../components/withForecast';
 import ForecastGrid from '../components/ForecastGrid';
@@ -57,7 +56,7 @@ class Forecast extends Component {
   render() {
     return (
       <div className="page-container">
-        {!this.state.loaded ? <Loading /> : this.renderForecast()}
+        {!this.state.loaded ? '' : this.renderForecast()}
       </div>
     );
   }

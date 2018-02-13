@@ -13,7 +13,7 @@ export function selectLocation(location) {
     });
 
     dispatch(startFetchingForecast());
-    dispatch(push('/forecast'));
+    dispatch(push('/forecast?location=' + location));
   };
 };
 

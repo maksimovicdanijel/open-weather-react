@@ -5,7 +5,7 @@ import {
   FETCH_FORECAST_ERROR
 } from '../actions';
 
-const initialState = {
+export const initialState = {
   selectedLocation: '',
   isFetching: false,
   hasError: false,
@@ -37,7 +37,7 @@ export default function weatherApp(state = initialState, action) {
        hasError: true,
        error: action.error
      });
-    
+
     default:
       return state;
   }

@@ -11,7 +11,7 @@ const reduxRouterMiddleware = routerMiddleware(history);
 
 const store = createStore(
   combineReducers({
-    ...reducers,
+    forecast: reducers,
     router: routerReducer
   }),
   applyMiddleware(thunk, logger, reduxRouterMiddleware)
