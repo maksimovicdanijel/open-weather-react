@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Loading = ({loading}) => {
   return (
-    (loading ? <div>Loading...</div> : '')
+    (loading ? <div className="loading">Loading...</div> : '')
   );
 };
 

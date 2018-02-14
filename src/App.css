@@ -422,3 +422,8 @@ body {
 .forecast-grid-item__icon {
   height: 100px;
   margin-bottom: 20px; }
+
+.loading {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold; }
