@@ -1,4 +1,5 @@
 import {push} from 'react-router-redux';
+import WeatherService from '../services/WeatherService';
 
 export const SELECT_LOCATION = 'select_location';
 export const START_FETCHING_FORECAST = 'start_fetching_forecast';
@@ -12,14 +13,25 @@ export function selectLocation(location) {
       location
     });
 
-    dispatch(startFetchingForecast());
-    dispatch(push('/forecast?location=' + location));
+    dispatch(fetchForecast(location));
   };
 };
 
 export function startFetchingForecast() {
   return {
     type: START_FETCHING_FORECAST
+  };
+}
+
+export function fetchForecast(location) {
+  return (dispatch, getState) => {
+    dispatch(startFetchingForecast());
+
+    WeatherService.fetchLocationWeather(location)
+      .then((response) => {
+        dispatch(fetchForecastSuccess(response));
+        dispatch(push('/forecast?location=' + location));
+      });
   };
 }
 

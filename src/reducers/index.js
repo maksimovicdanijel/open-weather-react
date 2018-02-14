@@ -29,7 +29,7 @@ export default function weatherApp(state = initialState, action) {
      return Object.assign({}, state, {
        isFetching: false,
        hasError: false,
-       forecast: action.forecast
+       locationForecast: action.forecast
      });
 
     case FETCH_FORECAST_ERROR:

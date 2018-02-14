@@ -1,48 +1,31 @@
 import React, {Component} from 'react';
 import querystring from 'querystring';
 import {Container} from 'reactbulma';
+import {connect} from 'react-redux';
 
-import WeatherService from '../services/WeatherService';
 import withForecast from '../components/withForecast';
 import ForecastGrid from '../components/ForecastGrid';
+import {fetchForecast} from '../actions';
 
 class Forecast extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      location: '',
-      forecast: null,
-      loaded: false
-    };
-  }
-
   componentDidMount() {
-    this.fetchForecast(this.parseLocation(this.props.location));
+    if (!this.hasForecast()) {
+      this.props.fetchForecast(this.parseLocation());
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.fetchForecast(this.parseLocation(nextProps.location));
+  hasForecast() {
+    return this.props.forecast && Object.keys(this.props.forecast).length > 0;
   }
 
   parseLocation(routerLocation) {
-    const query = querystring.parse(routerLocation.search.substr(1));
+    const query = querystring.parse(this.props.location.search.substr(1));
 
     return query.location;
   }
 
-  fetchForecast(location) {
-    WeatherService.fetchLocationyWeather(location)
-      .then((data) => {
-        this.setState({
-          loaded: true,
-          forecast: data
-        });
-      });
-  }
-
   renderForecast() {
-    const WithForecastGrid = withForecast(this.state.forecast, ForecastGrid);
+    const WithForecastGrid = withForecast(this.props.forecast, ForecastGrid);
 
     return (
       <div>
@@ -56,10 +39,29 @@ class Forecast extends Component {
   render() {
     return (
       <div className="page-container">
-        {!this.state.loaded ? '' : this.renderForecast()}
+        {this.props.loading || !this.hasForecast() ? '' : this.renderForecast()}
       </div>
     );
   }
 }
 
-export default Forecast;
+const mapStateToProps = (state) => {
+  return {
+    forecast: state.forecast.locationForecast,
+    loading: state.forecast.isFetching
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchForecast: (location) => {
+      console.log('location', location);
+      dispatch(fetchForecast(location));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Forecast);
